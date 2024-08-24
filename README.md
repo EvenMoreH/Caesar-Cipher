@@ -19,12 +19,12 @@ Rough implementation of Ceasar Cipher that uses letter substitution.
 5. File with chosen name and '-secret' extension will appear in output folder. (if selected).
 
 ## Project Tree:
-📦Caesar-Cipher
- ┣ 📂include
- ┃ ┗ 📜input.txt
- ┣ 📂output
- ┣ 📂src
- ┃ ┣ 📜CaesarCipher.c
- ┃ ┗ 📜CaesarCipher.exe
- ┣ 📜.gitignore
- ┗ 📜README.md
+📦Caesar-Cipher  
+ ┣ 📂include  
+ ┃ ┗ 📜input.txt  
+ ┣ 📂output  
+ ┣ 📂src  
+ ┃ ┣ 📜CaesarCipher.c  
+ ┃ ┗ 📜CaesarCipher.exe  
+ ┣ 📜.gitignore  
+ ┗ 📜README.md  
