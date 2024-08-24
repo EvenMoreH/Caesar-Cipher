@@ -13,7 +13,11 @@ Rough implementation of Ceasar Cipher that uses letter substitution.
 ## How to:
 1. Open input.txt file located in include folder.
 2. Write plain text that should be encrypted.
-    - NOTE: Text should not contain special characters (comas, dots, exclamations)
+    * WARNING:
+        - Any special characters will be removed from input.
+        - Non-english characters may cause error.
+        - If '%' will be used as a space substitution, it will not be displayed in -secret file. (bug caused by C compiler >I guess...<).
+        - Numbers will not be encrypted. (at least for now).
 3. Start CaesarCipher.exe
 4. File with chosen name will appear in output folder. (if selected).
 5. File with chosen name and '-secret' extension will appear in output folder. (if selected).

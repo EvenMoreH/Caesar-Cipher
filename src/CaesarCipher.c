@@ -8,6 +8,9 @@
 #include <stdbool.h>
 
 const char alpha[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const char excluded[] = "!@#$\%^&*()_+-=[]{}|\\/?,.\"\'";
+const char num[] = "01234567890123456789012345";
+const char replacement[] = " ";
 const char space[] = " ";
 char cryptoSpace[1];
 
@@ -71,6 +74,17 @@ int main() {
         input[u] = toupper(input[u]);
     }
 
+    // Loops through whole input and removes special characters by shifting left by 1 if character is found
+    char* excludeSpecialCharacters;
+    for (int r = 0; r < 26; r++)
+    {
+        while ((excludeSpecialCharacters = strchr(input, excluded[r])) != NULL)
+        {
+            strcpy(excludeSpecialCharacters, excludeSpecialCharacters + 1);
+        }
+    }
+
+
     printf("\nFollowing text will be encrypted, please wait...\n%s\n", input);
 
     for (int i = 0; i < length; i++)
@@ -103,8 +117,13 @@ int main() {
                     output[i] = space[0];
                 }
             }
+            else if (input[i] == num[j])
+            {
+                output[i] = num[j];
+            }
         }
     }
+
 
     printf("\nEncrypted message:\n%s\n\n", output);
 
