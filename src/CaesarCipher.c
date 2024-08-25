@@ -32,6 +32,8 @@ int mod;
 bool sp;
 char temp;
 int cryptoSp;
+// I really did not want to make another check for printing '%' correct so I hardcoded it.
+int exceptionPercent;
 
 void clearBuffer();
 void cipherSpace(bool sp);
@@ -74,6 +76,21 @@ int main() {
         input[u] = toupper(input[u]);
     }
 
+    // Check for non-english characters using ASCII ranges
+    for (int e = 0; e < length; e++)
+    {
+        if (input[e] < 32 || input[e] > 126)
+        {
+            printf("\n*ERROR* - Non-English letter(s) found within the input.\n");
+            printf("*Closing the application*\n\n");
+            goto end;
+        }
+        else
+        {
+            continue;
+        }
+    }
+
     // Loops through whole input and removes special characters by shifting left by 1 if character is found
     char* excludeSpecialCharacters;
     for (int r = 0; r < 26; r++)
@@ -83,7 +100,6 @@ int main() {
             strcpy(excludeSpecialCharacters, excludeSpecialCharacters + 1);
         }
     }
-
 
     printf("\nFollowing text will be encrypted, please wait...\n%s\n", input);
 
@@ -124,7 +140,6 @@ int main() {
         }
     }
 
-
     printf("\nEncrypted message:\n%s\n\n", output);
 
     system("pause");
@@ -141,6 +156,8 @@ int main() {
         secretFile();
     }
     printf("\n");
+
+    end:
 
     system("pause");
 
@@ -160,6 +177,10 @@ void cipherSpace(bool sp) {
         printf("\nInput a character to be used instead of space:\n> ");
         scanf(" %1c", &cryptoSpace[0]);
         cryptoSp = 1;
+        if (cryptoSpace[0] == '%')
+        {
+            exceptionPercent = 1;
+        }
     }
 }
 
@@ -230,12 +251,18 @@ int secretFile() {
     char convertedC[5];
     sprintf(convertedC, "%d", c);
 
-
     fprintf(outputSecretFile, "> Substitution Cipher modifier: ");
     fprintf(outputSecretFile, convertedC);
     fprintf(outputSecretFile, "\n");
-    fprintf(outputSecretFile, "> Character used instead of Space: ");
-    fprintf(outputSecretFile, cryptoSpace);
+    if (exceptionPercent == 1)
+    {
+        fprintf(outputSecretFile, "> Character used instead of Space: %%");
+    }
+    else
+    {
+        fprintf(outputSecretFile, "> Character used instead of Space: ");
+        fprintf(outputSecretFile, cryptoSpace);
+    }
     fprintf(outputSecretFile, "\n");
     fprintf(outputSecretFile, "> Original text:");
     fprintf(outputSecretFile, "\n");

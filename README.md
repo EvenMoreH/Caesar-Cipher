@@ -15,8 +15,7 @@ Rough implementation of Ceasar Cipher that uses letter substitution.
 2. Write plain text that should be encrypted.
     * WARNING:
         - Any special characters will be removed from input.
-        - Non-english characters may cause error.
-        - If '%' will be used as a space substitution, it will not be displayed in -secret file. (bug caused by C compiler >I guess...<).
+        - Non-english characters (outside of ASCII 32-126 range) will return error.
         - Numbers will not be encrypted. (at least for now).
 3. Start CaesarCipher.exe
 4. File with chosen name will appear in output folder. (if selected).
